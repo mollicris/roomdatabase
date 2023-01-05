@@ -9,6 +9,8 @@ import androidx.room.RoomDatabase
 @Database(entities = [Subscriber::class],version = 1)
 abstract class SubscriberDataBase : RoomDatabase() {
 
+    abstract val subscriberDAO:SubscriberDAO
+
     companion object{
 
         @Volatile
