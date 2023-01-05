@@ -3,13 +3,16 @@ package com.example.roomdemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.roomdemo.databinding.ActivityMainBinding
+import com.example.roomdemo.db.Subscriber
 import com.example.roomdemo.db.SubscriberDataBase
 import com.example.roomdemo.db.SubscriberRepository
+import java.time.Duration
 
 class MainActivity : AppCompatActivity() {
     private  lateinit var binding: ActivityMainBinding
@@ -34,7 +37,11 @@ class MainActivity : AppCompatActivity() {
     private fun displaySubscriberList(){
         subscriberViewModel.subscribers.observe(this, Observer {
             Log.i("MYTAG",it.toString())
-            binding.subscriberRecyclerView.adapter = MyRecyclerViewAdapter(it)
+            binding.subscriberRecyclerView.adapter = MyRecyclerViewAdapter(it,{selectedItem: Subscriber->listItemClicked(selectedItem)})
         })
+    }
+
+    private fun listItemClicked(subscriber:Subscriber){
+        Toast.makeText(this,"select name is ${subscriber.name}",Toast.LENGTH_LONG).show()
     }
 }
