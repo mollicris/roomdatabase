@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         subscriberViewModel.message.observe(this, Observer {
             it.getContentIfNotHandled().let{
-                Toast.makeText(this,it,Toast.LENGTH_LONG).show()
+                Toast.makeText(this,it ,Toast.LENGTH_LONG).show()
             }
         })
     }
